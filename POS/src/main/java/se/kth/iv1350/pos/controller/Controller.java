@@ -38,7 +38,8 @@ public class Controller {
         if(foundItem == null){
             return null; //if no item is found then no item can be sold
         }
-        return null; //should return some info about the soldItem
+        SoldItemDTO soldItemInfo = currentSale.calculateRunningTotal(foundItem,0.25);
+        return soldItemInfo; //should return some info about the soldItem
     }
     
     

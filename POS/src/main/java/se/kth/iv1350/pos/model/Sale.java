@@ -19,10 +19,13 @@ public class Sale {
     public Sale(){
         purchasedItems = new ArrayList<>();
     }
-    
-    public void calculateRunningTotal(ItemDTO foundItem, double taxRate){
+    /*
+    *Calculates running total and creates a new object with additional info
+    */
+    public SoldItemDTO calculateRunningTotal(ItemDTO foundItem, double taxRate){
         runningTotal = foundItem.getPrice() * taxRate;
         soldItemInfo = new SoldItemDTO(foundItem, runningTotal, taxRate);
+        return soldItemInfo;
     }
     
 }
