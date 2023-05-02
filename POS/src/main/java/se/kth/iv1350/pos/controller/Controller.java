@@ -34,13 +34,28 @@ public class Controller {
     }
     
     public SoldItemDTO searchMatchingItem(int itemId){
+        SoldItemDTO soldItemInfo = currentSale.findListedItem(itemId);
+        if(soldItemInfo != null){
+            return soldItemInfo;
+        }
         ItemDTO foundItem = invSys.findItem(itemId);
         if(foundItem == null){
             return null; //if no item is found then no item can be sold
         }
-        SoldItemDTO soldItemInfo = currentSale.calculateRunningTotal(foundItem,0.25);
+        soldItemInfo = currentSale.calculateRunningTotal(foundItem);
         return soldItemInfo; //should return some info about the soldItem
     }
+    
+    public SoldItem specifyQuantity(int amount){
+        SoldItem soldItem = currentSale.calculateQuantity(amount);
+        return soldItem;
+    }
+    
+    public double endSale(){
+        double totalPrice = currentSale.calculateTotalSum();
+        return totalPrice;
+    }
+    
     
     
 }

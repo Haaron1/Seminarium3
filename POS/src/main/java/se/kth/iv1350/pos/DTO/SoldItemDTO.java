@@ -17,11 +17,31 @@ public class SoldItemDTO {
     private double runningTotal;
     private double taxRate;
     
-    public SoldItemDTO(ItemDTO foundItem, double runningTotal, double taxRate){
+    public SoldItemDTO(ItemDTO foundItem, double runningTotal){
         this.price = foundItem.getPrice();
         this.itemId = foundItem.getItemId();
         this.name = foundItem.getName();
         this.runningTotal = runningTotal;
-        this.taxRate = taxRate;
+        this.taxRate = foundItem.getTaxRate();
+    }
+    
+    public String getName(){
+        return name;
+    }
+    
+    public double getPrice(){
+        return price;
+    }
+    
+    public double getRunningTotal(){
+        return runningTotal;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+    
+    public double getTaxRate() {
+        return taxRate;
     }
 }

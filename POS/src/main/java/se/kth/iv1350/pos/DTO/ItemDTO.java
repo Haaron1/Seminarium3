@@ -8,10 +8,13 @@ public class ItemDTO {
     private int itemId;
     private double price;
     private String name;
-    public ItemDTO(int itemId, double price, String name){
+    private double taxRate;
+    public ItemDTO(int itemId, double price, String name, double taxRate){
         this.itemId = itemId;
         this.price = price;
         this.name = name;
+        this.taxRate = taxRate;
+        
     }
     /*
     *Method to retrieve the price of an item
@@ -32,5 +35,9 @@ public class ItemDTO {
     */
     public String getName(){
         return name;
+    }
+    
+    public double getTaxRate(){
+        return taxRate;
     }
 }

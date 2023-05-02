@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import se.kth.iv1350.pos.DTO.SoldItemDTO;
 import se.kth.iv1350.pos.DTO.ItemDTO;
+
 /**
  *
  * @author Haron Osman
@@ -14,7 +15,7 @@ import se.kth.iv1350.pos.DTO.ItemDTO;
 public class Sale {
     private List<SoldItem> purchasedItems;
     private SoldItemDTO soldItemInfo;
-    private double runningTotal;
+    private double totalPrice;
     
     public Sale(){
         purchasedItems = new ArrayList<>();
@@ -22,10 +23,36 @@ public class Sale {
     /*
     *Calculates running total and creates a new object with additional info
     */
-    public SoldItemDTO calculateRunningTotal(ItemDTO foundItem, double taxRate){
-        runningTotal = foundItem.getPrice() * taxRate;
-        soldItemInfo = new SoldItemDTO(foundItem, runningTotal, taxRate);
+    public SoldItemDTO calculateRunningTotal(ItemDTO foundItem){
+        double runningTotal = foundItem.getPrice() + foundItem.getPrice() * foundItem.getTaxRate();
+        soldItemInfo = new SoldItemDTO(foundItem, runningTotal);
         return soldItemInfo;
     }
+    
+    public SoldItem calculateQuantity(int amount ){
+        SoldItem item = new SoldItem(soldItemInfo, amount);
+        addItem(item);
+        return item;
+    }
+    
+    public SoldItemDTO findListedItem(int itemId){
+        for(SoldItem item : purchasedItems){
+            if(item.getItemId() == itemId){
+                item.increaseQuantity(1);
+                return item.getItemData();
+            }
+        }
+        return null;
+    }
+    public double calculateTotalSum(){
+        for(SoldItem item : purchasedItems){
+            totalPrice += item.getQuantity() * item.getRunningTotal();
+        }
+        return totalPrice;
+    }
+    
+    private void addItem(SoldItem item){
+        purchasedItems.add(item);
+    } 
     
 }

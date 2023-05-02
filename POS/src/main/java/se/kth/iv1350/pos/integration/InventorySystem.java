@@ -28,10 +28,10 @@ public class InventorySystem {
     }
     
     private void addItems(){
-        items.add(new ItemDTO(1, 19.99, "Apple"));
-        items.add(new ItemDTO(2, 16.95, "Milk"));
-        items.add(new ItemDTO(3, 19.99, "Juice"));
-        items.add(new ItemDTO(4, 19.99, "Carrot"));
-        items.add(new ItemDTO(5, 19.99, "Banana"));
+        items.add(new ItemDTO(1, 19.99, "Apple", 0.12));
+        items.add(new ItemDTO(2, 16.95, "Milk", 0.25));
+        items.add(new ItemDTO(3, 19.99, "Juice", 0.06));
+        items.add(new ItemDTO(4, 19.99, "Carrot",0.06));
+        items.add(new ItemDTO(5, 19.99, "Banana",0.12));
     }
 }
